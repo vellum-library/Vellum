@@ -1,0 +1,240 @@
+.auth-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    min-height: 100vh;
+}
+
+/* Panel de ilustración */
+
+.auth-visual {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px;
+    background-color: var(--color-secondary);
+    background-image:
+        linear-gradient(
+            to top,
+            rgba(29, 26, 57, 0.95),
+            transparent 65%
+        ),
+        url("../images/auth-background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.visual-content {
+    position: relative;
+    max-width: 480px;
+}
+
+.visual-content h2 {
+    font-size: clamp(32px, 3.5vw, 54px);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-white);
+    margin-bottom: 18px;
+}
+
+.visual-content p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-text);
+}
+
+/* Panel del formulario */
+
+.auth-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 410px;
+}
+
+/* Identidad de Vellum */
+
+.brand {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+}
+
+.brand-tagline {
+    color: var(--color-muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+/* Encabezado */
+
+.auth-heading {
+    margin-bottom: 28px;
+}
+
+.auth-heading h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.auth-heading p {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+/* Formulario */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--color-white);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input::placeholder {
+    color: var(--color-muted);
+    opacity: 0.75;
+}
+
+.form-group input:focus {
+    border-color: var(--color-accent);
+}
+
+/* Contraseña */
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 85px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--color-muted);
+    font-size: 12px;
+}
+
+.toggle-password:hover {
+    color: var(--color-accent);
+}
+
+/* Botón principal */
+
+.auth-button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 9px;
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.auth-button:hover {
+    background-color: #FFB77F;
+}
+
+/* Enlaces inferiores */
+
+.auth-footer {
+    margin-top: 25px;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.auth-footer a {
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mensajes */
+
+.alert {
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.alert.error {
+    background-color: rgba(174, 68, 90, 0.15);
+    border: 1px solid var(--color-rose);
+    color: var(--color-text);
+}
+
+.alert.success {
+    background-color: rgba(87, 160, 120, 0.15);
+    border: 1px solid #57A078;
+    color: #B8E5C9;
+}
+
+/* Adaptación a pantallas pequeñas */
+
+@media (max-width: 850px) {
+    .auth-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-visual {
+        min-height: 280px;
+        padding: 30px;
+    }
+
+    .auth-panel {
+        padding: 35px 25px;
+    }
+}

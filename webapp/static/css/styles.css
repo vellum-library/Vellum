@@ -1,0 +1,55 @@
+:root {
+    --color-background: #1D1A39;
+    --color-secondary: #451952;
+    --color-plum: #662549;
+    --color-rose: #AE445A;
+    --color-accent: #F39F5A;
+    --color-text: #E8BCB9;
+
+    --color-white: #FFF8F5;
+    --color-muted: #B5A2B5;
+    --color-border: rgba(232, 188, 185, 0.15);
+
+    --font-primary: 'Inter', sans-serif;
+    --font-heading: 'Playfair Display', Georgia, serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+::selection {
+    background-color: var(--color-rose);
+    color: var(--color-white);
+}
