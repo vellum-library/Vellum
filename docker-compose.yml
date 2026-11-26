@@ -1,0 +1,67 @@
+services:
+  webapp:
+    build: ./webapp
+    ports:
+      - "80:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      DB_HOST: db-webapp
+      DB_PORT: 5432
+      DB_NAME: ${WEBAPP_DB_NAME}
+      DB_USER: ${WEBAPP_DB_USER}
+      DB_PASSWORD: ${WEBAPP_DB_PASSWORD}
+      API_URL: http://api:8000
+    depends_on:
+      db-webapp:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  api:
+    build: ./api
+    environment:
+      DB_HOST: db-api
+      DB_PORT: 5432
+      DB_NAME: ${API_DB_NAME}
+      DB_USER: ${API_DB_USER}
+      DB_PASSWORD: ${API_DB_PASSWORD}
+    volumes:
+      - epub_storage:/app/uploads
+    depends_on:
+      db-api:
+        condition: service_healthy
+
+  db-webapp:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${WEBAPP_DB_NAME}
+      POSTGRES_USER: ${WEBAPP_DB_USER}
+      POSTGRES_PASSWORD: ${WEBAPP_DB_PASSWORD}
+    volumes:
+      - webapp_data:/var/lib/postgresql/data
+      - ./database/webapp.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${WEBAPP_DB_USER} -d ${WEBAPP_DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  db-api:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${API_DB_NAME}
+      POSTGRES_USER: ${API_DB_USER}
+      POSTGRES_PASSWORD: ${API_DB_PASSWORD}
+    volumes:
+      - api_data:/var/lib/postgresql/data
+      - ./database/api.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${API_DB_USER} -d ${API_DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  webapp_data:
+  api_data:
+  epub_storage:

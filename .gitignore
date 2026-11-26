@@ -221,3 +221,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Vellum - configuración privada
+.env
+.env.*
+!.env.example
+
+# Archivos importados
+*.epub
+uploads/
+
+# Datos locales
+data/
